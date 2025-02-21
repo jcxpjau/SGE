@@ -8,7 +8,13 @@ builder.Services.AddControllersWithViews();
 
 
 builder.Services.AddDbContext<Contexto>
-   (options => options.UseSqlServer("Data Source=SB-1490623\\JCXPJAU; Initial Catalog = SGE;Integrated Security = True;TrustServerCertificate = True"));
+   (options => options.UseSqlServer(
+       "Data Source=SB-1490623\\JCXPJAU; " +
+       "Initial Catalog = SGE;" +
+       "Integrated Security = True;" +
+       "TrustServerCertificate = True"
+       )
+   );
 
 var app = builder.Build();
 

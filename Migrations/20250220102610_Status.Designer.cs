@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SGE.Models;
 
@@ -10,9 +11,11 @@ using SGE.Models;
 namespace SGE.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20250220102610_Status")]
+    partial class Status
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +60,7 @@ namespace SGE.Migrations
 
                     b.Property<bool>("status")
                         .HasColumnType("bit")
-                        .HasColumnName("Status");
+                        .HasColumnName("Ativo");
 
                     b.HasKey("Id");
 
@@ -180,7 +183,7 @@ namespace SGE.Migrations
 
                     b.Property<bool>("status")
                         .HasColumnType("bit")
-                        .HasColumnName("Status");
+                        .HasColumnName("Ativo");
 
                     b.HasKey("Id");
 

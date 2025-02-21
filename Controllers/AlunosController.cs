@@ -22,7 +22,7 @@ namespace SGE.Controllers
         public async Task<IActionResult> Index()
         {
               return _context.Alunos != null ? 
-                          View(await _context.Alunos.ToListAsync()) :
+                          View(await _context.Alunos.Where( aluno => aluno.Status == true ).ToListAsync()) :
                           Problem("Entity set 'Contexto.Alunos'  is null.");
         }
 
@@ -59,6 +59,7 @@ namespace SGE.Controllers
         {
             if (ModelState.IsValid)
             {
+                alunos.Status = true;
                 _context.Add(alunos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -147,9 +148,8 @@ namespace SGE.Controllers
             var alunos = await _context.Alunos.FindAsync(id);
             if (alunos != null)
             {
-                _context.Alunos.Remove(alunos);
+                alunos.Status = false;
             }
-            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

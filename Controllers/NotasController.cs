@@ -49,7 +49,7 @@ namespace SGE.Controllers
         // GET: Notas/Create
         public IActionResult Create()
         {
-            ViewData["AlunosId"] = new SelectList(_context.Alunos, "Id", "Id");
+            ViewData["AlunosId"] = new SelectList(_context.Alunos.Where( aluno => aluno.Status == true ), "Id", "Nome");
             ViewData["EtapasId"] = new SelectList(_context.Etapas, "Id", "Id");
             ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "Id");
             return View();
@@ -68,7 +68,7 @@ namespace SGE.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AlunosId"] = new SelectList(_context.Alunos, "Id", "Id", notas.AlunosId);
+            ViewData["AlunosId"] = new SelectList(_context.Alunos.Where(aluno => aluno.Status == true), "Id", "Nome", notas.AlunosId);
             ViewData["EtapasId"] = new SelectList(_context.Etapas, "Id", "Id", notas.EtapasId);
             ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "Id", notas.MateriasId);
             return View(notas);
@@ -87,7 +87,7 @@ namespace SGE.Controllers
             {
                 return NotFound();
             }
-            ViewData["AlunosId"] = new SelectList(_context.Alunos, "Id", "Id", notas.AlunosId);
+            ViewData["AlunosId"] = new SelectList(_context.Alunos.Where(aluno => aluno.Status == true), "Id", "Nome", notas.AlunosId);
             ViewData["EtapasId"] = new SelectList(_context.Etapas, "Id", "Id", notas.EtapasId);
             ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "Id", notas.MateriasId);
             return View(notas);
@@ -125,7 +125,7 @@ namespace SGE.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AlunosId"] = new SelectList(_context.Alunos, "Id", "Id", notas.AlunosId);
+            ViewData["AlunosId"] = new SelectList(_context.Alunos.Where(aluno => aluno.Status == true), "Id", "Nome", notas.AlunosId);
             ViewData["EtapasId"] = new SelectList(_context.Etapas, "Id", "Id", notas.EtapasId);
             ViewData["MateriasId"] = new SelectList(_context.Materias, "Id", "Id", notas.MateriasId);
             return View(notas);

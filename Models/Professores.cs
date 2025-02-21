@@ -29,5 +29,9 @@ namespace SGE.Models
         [Column("DataNascimento")]
         [Display(Name = "Data de Nascimento")]
         public string DataNascimento {  get; set; } = string.Empty;
+
+        [Column("Status")]
+        [Display(Name = "Status")]
+        public bool Status { get; set; }
     }
 }

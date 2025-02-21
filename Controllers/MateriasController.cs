@@ -47,7 +47,7 @@ namespace SGE.Controllers
         // GET: Materias/Create
         public IActionResult Create()
         {
-            ViewData["ProfessoresId"] = new SelectList(_context.Professores, "Id", "Id");
+            ViewData["ProfessoresId"] = new SelectList(_context.Professores.Where( professor => professor.Status == true), "Id", "Nome");
             return View();
         }
 
@@ -64,7 +64,7 @@ namespace SGE.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProfessoresId"] = new SelectList(_context.Professores, "Id", "Id", materias.ProfessoresId);
+            ViewData["ProfessoresId"] = new SelectList(_context.Professores.Where(professor => professor.Status == true), "Id", "Nome", materias.ProfessoresId);
             return View(materias);
         }
 
@@ -81,7 +81,7 @@ namespace SGE.Controllers
             {
                 return NotFound();
             }
-            ViewData["ProfessoresId"] = new SelectList(_context.Professores, "Id", "Id", materias.ProfessoresId);
+            ViewData["ProfessoresId"] = new SelectList(_context.Professores.Where(professor => professor.Status == true), "Id", "Nome", materias.ProfessoresId);
             return View(materias);
         }
 
@@ -117,7 +117,7 @@ namespace SGE.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProfessoresId"] = new SelectList(_context.Professores, "Id", "Id", materias.ProfessoresId);
+            ViewData["ProfessoresId"] = new SelectList(_context.Professores.Where(professor => professor.Status == true), "Id", "Nome", materias.ProfessoresId);
             return View(materias);
         }
 
